@@ -1,10 +1,6 @@
 package com.qnaplace.qnaplace.qnaplace.service.dto
 
-import com.qnaplace.qnaplace.qnaplace.domain.article.question.header.LongQuestionHeader
-import com.qnaplace.qnaplace.qnaplace.domain.article.question.header.MultipleChoiceQuestionHeader
-import com.qnaplace.qnaplace.qnaplace.domain.article.question.header.QuestionHeader
 import com.qnaplace.qnaplace.qnaplace.domain.article.question.header.QuestionHeaders
-import com.qnaplace.qnaplace.qnaplace.domain.article.question.header.ShortQuestionHeader
 
 data class QuestionHeadersResponse(
     val titles: List<String>,

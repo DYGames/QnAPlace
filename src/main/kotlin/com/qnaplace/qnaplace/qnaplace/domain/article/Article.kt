@@ -9,7 +9,7 @@ import jakarta.persistence.Entity
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
 import jakarta.persistence.OneToOne
-import java.util.Date
+import java.time.LocalDateTime
 
 @Entity
 class Article(
@@ -17,7 +17,11 @@ class Article(
     @JoinColumn(name = "AUTHOR_ID")
     val author: Member,
 
-    val date: Date,
+    val date: LocalDateTime,
+
+    val title: String,
+
+    val body: String,
 
     @Embedded
     @JoinColumn(name = "QUESTION_HEADERS_ID")
@@ -25,5 +29,5 @@ class Article(
 
     @OneToOne
     @JoinColumn(name = "ANSWERS_ID")
-    val answers: Answers,
+    val answers: Answers?,
 ) : BaseEntity()

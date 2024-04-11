@@ -6,5 +6,7 @@ import jakarta.persistence.Entity
 @Entity
 @DiscriminatorValue("SHORT")
 class ShortQuestionHeader(
+    title: String,
+    description: String,
     val hint: String
-) : QuestionHeader()
+) : QuestionHeader(title, description)

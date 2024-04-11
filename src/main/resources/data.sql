@@ -9,7 +9,7 @@ INSERT INTO CHOICE values(0, 2, 'Choice 1');
 INSERT INTO CHOICE values(1, 2, 'Choice 2');
 INSERT INTO CHOICE values(2, 2, 'Choice 3');
 
-INSERT INTO ARTICLE values(null, 0, {ts '2012-09-17 18:47:52.69'}, 0);
+INSERT INTO ARTICLE values(null, 0, {ts '2012-09-17 18:47:52.69'}, 0, 'Article Body', 'Article Title');
 
 INSERT INTO ARTICLE_QUESTION_HEADERS values(0, 0);
 INSERT INTO ARTICLE_QUESTION_HEADERS values(0, 1);

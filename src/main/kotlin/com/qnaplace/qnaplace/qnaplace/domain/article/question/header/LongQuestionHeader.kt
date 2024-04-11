@@ -6,5 +6,7 @@ import jakarta.persistence.Entity
 @Entity
 @DiscriminatorValue("LONG")
 class LongQuestionHeader(
+    title: String,
+    description: String,
     val hint: String
-) : QuestionHeader()
+) : QuestionHeader(title, description)

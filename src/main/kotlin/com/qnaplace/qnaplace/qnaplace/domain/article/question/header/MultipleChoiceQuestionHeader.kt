@@ -8,7 +8,9 @@ import jakarta.persistence.OneToMany
 @Entity
 @DiscriminatorValue("MULTIPLE_CHOICE")
 class MultipleChoiceQuestionHeader(
+    title: String,
+    description: String,
     @OneToMany
     @JoinColumn(name = "QUESTION_HEADER_ID")
     val choices: List<Choice>
-) : QuestionHeader()
+) : QuestionHeader(title, description)
