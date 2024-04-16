@@ -10,4 +10,12 @@ class Answers(
     @OneToMany
     @JoinColumn(name = "ANSWERS_ID")
     val answers: List<Answer>
-) : BaseEntity()
+) : BaseEntity() {
+    fun addAnswer(answer: Answer): Answers {
+        val answers = Answers(
+            answers = answers.plus(answer)
+        )
+
+        return answers
+    }
+}

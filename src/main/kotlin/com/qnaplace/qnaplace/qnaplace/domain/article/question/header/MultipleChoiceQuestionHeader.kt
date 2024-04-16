@@ -1,5 +1,6 @@
 package com.qnaplace.qnaplace.qnaplace.domain.article.question.header
 
+import com.qnaplace.qnaplace.qnaplace.domain.article.question.QuestionType
 import jakarta.persistence.DiscriminatorValue
 import jakarta.persistence.Entity
 import jakarta.persistence.JoinColumn
@@ -13,4 +14,4 @@ class MultipleChoiceQuestionHeader(
     @OneToMany
     @JoinColumn(name = "QUESTION_HEADER_ID")
     val choices: List<Choice>
-) : QuestionHeader(title, description)
+) : QuestionHeader(title, description), QuestionType.MultipleChoice

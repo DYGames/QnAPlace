@@ -1,5 +1,6 @@
 package com.qnaplace.qnaplace.qnaplace.domain.article.question.body
 
+import com.qnaplace.qnaplace.qnaplace.domain.article.question.QuestionType
 import com.qnaplace.qnaplace.qnaplace.domain.article.question.header.LongQuestionHeader
 import jakarta.persistence.DiscriminatorValue
 import jakarta.persistence.Entity
@@ -8,8 +9,7 @@ import jakarta.persistence.Entity
 @DiscriminatorValue("LONG")
 class LongQuestionBody(
     longQuestionHeader: LongQuestionHeader,
-
     val body: String
-) : QuestionBody(longQuestionHeader) {
+) : QuestionBody(longQuestionHeader), QuestionType.Long {
     override fun normalizeBody(): String = body
 }

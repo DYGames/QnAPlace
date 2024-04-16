@@ -1,5 +1,6 @@
 package com.qnaplace.qnaplace.qnaplace.domain.article.question.body
 
+import com.qnaplace.qnaplace.qnaplace.domain.article.question.QuestionType
 import com.qnaplace.qnaplace.qnaplace.domain.article.question.header.MultipleChoiceQuestionHeader
 import jakarta.persistence.DiscriminatorValue
 import jakarta.persistence.Entity
@@ -10,6 +11,6 @@ class MultipleChoiceQuestionBody(
     multipleChoiceQuestionHeader: MultipleChoiceQuestionHeader,
 
     val body: Int
-) : QuestionBody(multipleChoiceQuestionHeader) {
+) : QuestionBody(multipleChoiceQuestionHeader), QuestionType.MultipleChoice {
     override fun normalizeBody(): String = body.toString()
 }

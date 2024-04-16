@@ -1,5 +1,6 @@
 package com.qnaplace.qnaplace.qnaplace.domain.article.question.header
 
+import com.qnaplace.qnaplace.qnaplace.domain.article.question.QuestionType
 import jakarta.persistence.DiscriminatorValue
 import jakarta.persistence.Entity
 
@@ -9,4 +10,4 @@ class LongQuestionHeader(
     title: String,
     description: String,
     val hint: String
-) : QuestionHeader(title, description)
+) : QuestionHeader(title, description), QuestionType.Long
