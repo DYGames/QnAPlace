@@ -6,7 +6,7 @@ data class AnswersResponse(
     val answers: List<AnswerResponse>
 ) {
     companion object {
-        fun of(answers: Answers?) =
-            if (answers == null) null else AnswersResponse(answers.answers.map { AnswerResponse.of(it) })
+        fun of(answers: Answers) =
+            AnswersResponse(answers.values.map { AnswerResponse.of(it) })
     }
 }

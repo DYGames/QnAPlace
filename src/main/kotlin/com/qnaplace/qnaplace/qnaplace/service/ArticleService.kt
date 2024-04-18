@@ -1,6 +1,9 @@
 package com.qnaplace.qnaplace.qnaplace.service
 
 import com.qnaplace.qnaplace.qnaplace.domain.article.Article
+import com.qnaplace.qnaplace.qnaplace.domain.article.question.body.Answer
+import com.qnaplace.qnaplace.qnaplace.domain.article.question.body.Answers
+import com.qnaplace.qnaplace.qnaplace.domain.repository.AnswerRepository
 import com.qnaplace.qnaplace.qnaplace.domain.repository.ArticleRepository
 import com.qnaplace.qnaplace.qnaplace.domain.repository.MemberRepository
 import com.qnaplace.qnaplace.qnaplace.service.dto.AnswerRequest
@@ -15,13 +18,15 @@ import java.time.LocalDateTime
 @Service
 class ArticleService(
     private val articleRepository: ArticleRepository,
-    private val memberRepository: MemberRepository
+    private val answerRepository: AnswerRepository,
+    private val memberRepository: MemberRepository,
 ) {
     @Transactional
     fun findById(articleId: Long): ArticleResponse {
         val article = articleRepository.findById(articleId).get()
+        val answers = Answers(answerRepository.findByArticleId(articleId))
 
-        return ArticleResponse.of(article)
+        return ArticleResponse.of(article, answers)
     }
 
     @Transactional
@@ -34,20 +39,31 @@ class ArticleService(
             title = articleRequest.title,
             body = articleRequest.body,
             questionHeaders = QuestionHeadersRequest.toDomain(articleRequest.questionHeaders),
-            answers = null
         )
 
-        return ArticleResponse.of(article)
+        return ArticleResponse.of(articleRepository.save(article), Answers())
     }
 
     @Transactional
     fun createAnswer(memberId: Long, articleId: Long, request: AnswerRequest): ArticleResponse {
         val author = memberRepository.findById(memberId).get()
         val article = articleRepository.findById(articleId).get()
+        val questionHeaders = article.questionHeaders.questionHeaders
 
-        val answer = AnswerRequest.toDomain(author, request)
-        val addedArticle = article.addAnswer(answer)
+        val answer = Answer(
+            articleId = articleId,
+            questionBodies = request.questionBodies.map { questionBody ->
+                questionBody.toDomain(
+                    questionHeaders.first { it.id == questionBody.questionHeaderId }
+                )
+            },
+            author = author,
+        )
 
-        return ArticleResponse.of(addedArticle)
+        answerRepository.save(answer)
+
+        val answers = answerRepository.findByArticleId(articleId)
+
+        return ArticleResponse.of(article, Answers(answers))
     }
 }

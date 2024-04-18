@@ -3,14 +3,14 @@ package com.qnaplace.qnaplace.qnaplace.service.dto.body
 import com.qnaplace.qnaplace.qnaplace.domain.article.question.body.LongQuestionBody
 import com.qnaplace.qnaplace.qnaplace.domain.article.question.body.QuestionBody
 import com.qnaplace.qnaplace.qnaplace.domain.article.question.header.LongQuestionHeader
-import com.qnaplace.qnaplace.qnaplace.service.dto.header.QuestionHeaderRequest
+import com.qnaplace.qnaplace.qnaplace.domain.article.question.header.QuestionHeader
 
 class LongQuestionBodyRequest(
-    questionHeaderRequest: QuestionHeaderRequest,
+    questionHeaderId: Long,
     private val body: String
-) : QuestionBodyRequest(questionHeaderRequest) {
-    override fun toDomain(): QuestionBody = LongQuestionBody(
-        questionHeaderRequest.toDomain() as LongQuestionHeader,
+) : QuestionBodyRequest(questionHeaderId) {
+    override fun toDomain(questionHeader: QuestionHeader): QuestionBody = LongQuestionBody(
+        questionHeader as LongQuestionHeader,
         body
     )
 }

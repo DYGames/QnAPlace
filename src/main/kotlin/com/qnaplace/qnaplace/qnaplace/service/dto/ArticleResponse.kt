@@ -1,6 +1,7 @@
 package com.qnaplace.qnaplace.qnaplace.service.dto
 
 import com.qnaplace.qnaplace.qnaplace.domain.article.Article
+import com.qnaplace.qnaplace.qnaplace.domain.article.question.body.Answers
 import java.time.LocalDateTime
 
 data class ArticleResponse(
@@ -10,17 +11,17 @@ data class ArticleResponse(
     val title: String,
     val body: String,
     val questionHeaders: QuestionHeadersResponse,
-    val answers: AnswersResponse?,
+    val answers: AnswersResponse,
 ) {
     companion object {
-        fun of(article: Article) = ArticleResponse(
+        fun of(article: Article, answers: Answers) = ArticleResponse(
             article.id,
             article.author.name,
             article.date,
             article.title,
             article.body,
             QuestionHeadersResponse.of(article.questionHeaders),
-            AnswersResponse.of(article.answers)
+            AnswersResponse.of(answers)
         )
     }
 }

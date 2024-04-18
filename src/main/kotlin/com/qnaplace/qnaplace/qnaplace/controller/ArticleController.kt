@@ -49,13 +49,12 @@ class ArticleController(
         @PathVariable articleId: Long,
         @RequestBody request: AnswerRequest
     ): ResponseEntity<ArticleResponse> {
-        print(request)
         val article = articleService.createAnswer(
             memberId,
             articleId,
             request
         )
-        print(article)
+
         return ResponseEntity.status(HttpStatus.CREATED).body(article)
     }
 }

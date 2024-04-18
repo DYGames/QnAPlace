@@ -3,7 +3,7 @@ package com.qnaplace.qnaplace.qnaplace.service.dto.body
 import com.fasterxml.jackson.annotation.JsonSubTypes
 import com.fasterxml.jackson.annotation.JsonTypeInfo
 import com.qnaplace.qnaplace.qnaplace.domain.article.question.body.QuestionBody
-import com.qnaplace.qnaplace.qnaplace.service.dto.header.QuestionHeaderRequest
+import com.qnaplace.qnaplace.qnaplace.domain.article.question.header.QuestionHeader
 
 @JsonTypeInfo(
     use = JsonTypeInfo.Id.NAME,
@@ -16,7 +16,7 @@ import com.qnaplace.qnaplace.qnaplace.service.dto.header.QuestionHeaderRequest
     JsonSubTypes.Type(value = MultipleChoiceQuestionBodyRequest::class, name = "MultipleChoiceQuestionBodyRequest"),
 )
 abstract class QuestionBodyRequest(
-    val questionHeaderRequest: QuestionHeaderRequest
+    val questionHeaderId: Long
 ) {
-    abstract fun toDomain(): QuestionBody
+    abstract fun toDomain(questionHeader: QuestionHeader): QuestionBody
 }
