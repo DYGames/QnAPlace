@@ -10,6 +10,7 @@ import com.qnaplace.qnaplace.qnaplace.domain.repository.MemberRepository
 import com.qnaplace.qnaplace.qnaplace.service.dto.AnswerRequest
 import com.qnaplace.qnaplace.qnaplace.service.dto.ArticleRequest
 import com.qnaplace.qnaplace.qnaplace.service.dto.ArticleResponse
+import com.qnaplace.qnaplace.qnaplace.service.dto.ArticlesResponse
 import com.qnaplace.qnaplace.qnaplace.service.dto.QuestionHeadersRequest
 import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
@@ -29,6 +30,16 @@ class ArticleService(
         val answers = Answers(answerRepository.findByArticleId(articleId))
 
         return ArticleResponse.of(article, answers)
+    }
+
+    @Transactional
+    fun findByCategoryId(categoryId: Long): ArticlesResponse {
+        val articles = articleRepository.findByCategoryId(categoryId)
+        val articleAnswers = articles.map {
+            Answers(answerRepository.findByArticleId(it.id))
+        }
+
+        return ArticlesResponse.of(articles, articleAnswers)
     }
 
     @Transactional

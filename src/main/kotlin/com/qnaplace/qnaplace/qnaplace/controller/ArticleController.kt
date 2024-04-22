@@ -4,6 +4,7 @@ import com.qnaplace.qnaplace.qnaplace.service.ArticleService
 import com.qnaplace.qnaplace.qnaplace.service.dto.AnswerRequest
 import com.qnaplace.qnaplace.qnaplace.service.dto.ArticleRequest
 import com.qnaplace.qnaplace.qnaplace.service.dto.ArticleResponse
+import com.qnaplace.qnaplace.qnaplace.service.dto.ArticlesResponse
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -12,10 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestHeader
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("article")
+@RequestMapping("articles")
 class ArticleController(
     private val articleService: ArticleService
 ) {
@@ -28,6 +30,17 @@ class ArticleController(
         )
 
         return ResponseEntity.ok().body(article)
+    }
+
+    @GetMapping
+    fun findByCategoryId(
+        @RequestParam("categoryId") categoryId: Long,
+    ): ResponseEntity<ArticlesResponse> {
+        val articles = articleService.findByCategoryId(
+            categoryId
+        )
+
+        return ResponseEntity.ok().body(articles)
     }
 
     @PostMapping

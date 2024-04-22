@@ -3,6 +3,7 @@ INSERT INTO MEMBER values(1, 'dygames1@gmail.com', 'dygames1');
 
 INSERT INTO CATEGORY values(0, 'Programming');
 INSERT INTO CATEGORY values(1, 'Fashion');
+INSERT INTO CATEGORY values(2, 'Science');
 
 INSERT INTO QUESTION_HEADERS values(0);
 
