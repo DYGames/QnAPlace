@@ -10,6 +10,7 @@ data class ArticleResponse(
     val date: LocalDateTime,
     val title: String,
     val body: String,
+    val category: String,
     val questionHeaders: QuestionHeadersResponse,
     val answers: AnswersResponse,
 ) {
@@ -20,6 +21,7 @@ data class ArticleResponse(
             article.date,
             article.title,
             article.body,
+            article.category.name,
             QuestionHeadersResponse.of(article.questionHeaders),
             AnswersResponse.of(answers)
         )

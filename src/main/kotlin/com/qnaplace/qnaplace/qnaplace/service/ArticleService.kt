@@ -5,6 +5,7 @@ import com.qnaplace.qnaplace.qnaplace.domain.article.question.body.Answer
 import com.qnaplace.qnaplace.qnaplace.domain.article.question.body.Answers
 import com.qnaplace.qnaplace.qnaplace.domain.repository.AnswerRepository
 import com.qnaplace.qnaplace.qnaplace.domain.repository.ArticleRepository
+import com.qnaplace.qnaplace.qnaplace.domain.repository.CategoryRepository
 import com.qnaplace.qnaplace.qnaplace.domain.repository.MemberRepository
 import com.qnaplace.qnaplace.qnaplace.service.dto.AnswerRequest
 import com.qnaplace.qnaplace.qnaplace.service.dto.ArticleRequest
@@ -20,6 +21,7 @@ class ArticleService(
     private val articleRepository: ArticleRepository,
     private val answerRepository: AnswerRepository,
     private val memberRepository: MemberRepository,
+    private val categoryRepository: CategoryRepository,
 ) {
     @Transactional
     fun findById(articleId: Long): ArticleResponse {
@@ -32,12 +34,14 @@ class ArticleService(
     @Transactional
     fun create(memberId: Long, articleRequest: ArticleRequest): ArticleResponse {
         val author = memberRepository.findById(memberId).get()
+        val category = categoryRepository.findById(articleRequest.categoryId).get()
 
         val article = Article(
             author = author,
             date = LocalDateTime.now(),
             title = articleRequest.title,
             body = articleRequest.body,
+            category = category,
             questionHeaders = QuestionHeadersRequest.toDomain(articleRequest.questionHeaders),
         )
 

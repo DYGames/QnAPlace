@@ -1,6 +1,9 @@
 INSERT INTO MEMBER values(0, 'dygames@gmail.com', 'dygames');
 INSERT INTO MEMBER values(1, 'dygames1@gmail.com', 'dygames1');
 
+INSERT INTO CATEGORY values(0, 'Programming');
+INSERT INTO CATEGORY values(1, 'Fashion');
+
 INSERT INTO QUESTION_HEADERS values(0);
 
 INSERT INTO QUESTION_HEADER values(0, 0, 'LONG', 'Description 1', 'Long Question Hint', 'Long Question');
@@ -11,7 +14,7 @@ INSERT INTO CHOICE values(0, 2, 'Choice 1');
 INSERT INTO CHOICE values(1, 2, 'Choice 2');
 INSERT INTO CHOICE values(2, 2, 'Choice 3');
 
-INSERT INTO ARTICLE values(0, {ts '2012-09-17 18:47:52.69'}, 0, 0, 'Article Body', 'Article Title');
+INSERT INTO ARTICLE values(0, 0, {ts '2012-09-17 18:47:52.69'}, 0, 0, 'Article Body', 'Article Title');
 
 INSERT INTO ANSWER values(0, 0, 0);
 INSERT INTO QUESTION_BODY values(0, 0, 'LONG', 'Long Answer 1');

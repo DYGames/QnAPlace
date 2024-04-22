@@ -7,5 +7,6 @@ data class ArticleRequest(
     val date: LocalDateTime,
     val title: String,
     val body: String,
+    val categoryId: Long,
     val questionHeaders: QuestionHeadersRequest,
 )

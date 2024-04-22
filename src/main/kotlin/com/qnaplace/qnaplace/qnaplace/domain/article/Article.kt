@@ -21,6 +21,9 @@ class Article(
 
     val body: String,
 
+    @ManyToOne
+    val category: Category,
+
     @OneToOne
     @JoinColumn(name = "QUESTION_HEADERS_ID")
     val questionHeaders: QuestionHeaders,
