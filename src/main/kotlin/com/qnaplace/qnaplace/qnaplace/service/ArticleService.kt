@@ -43,6 +43,16 @@ class ArticleService(
     }
 
     @Transactional
+    fun search(query: String): ArticlesResponse {
+        val articles = articleRepository.findByTitleOrBodyContainingIgnoreCase(query, query)
+        val articleAnswers = articles.map {
+            Answers(answerRepository.findByArticleId(it.id))
+        }
+
+        return ArticlesResponse.of(articles, articleAnswers)
+    }
+
+    @Transactional
     fun create(memberId: Long, articleRequest: ArticleRequest): ArticleResponse {
         val author = memberRepository.findById(memberId).get()
         val category = categoryRepository.findById(articleRequest.categoryId).get()

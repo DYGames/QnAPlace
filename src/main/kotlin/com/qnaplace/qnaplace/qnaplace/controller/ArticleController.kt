@@ -32,12 +32,23 @@ class ArticleController(
         return ResponseEntity.ok().body(article)
     }
 
-    @GetMapping
+    @GetMapping("/category/{categoryId}")
     fun findByCategoryId(
-        @RequestParam("categoryId") categoryId: Long,
+        @PathVariable categoryId: Long,
     ): ResponseEntity<ArticlesResponse> {
         val articles = articleService.findByCategoryId(
             categoryId
+        )
+
+        return ResponseEntity.ok().body(articles)
+    }
+
+    @GetMapping("/search")
+    fun search(
+        @RequestParam("query") query: String,
+    ): ResponseEntity<ArticlesResponse> {
+        val articles = articleService.search(
+            query
         )
 
         return ResponseEntity.ok().body(articles)
