@@ -12,7 +12,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener
 abstract class BaseEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 0
+    open val id: Long = 0
 ) {
     override fun equals(other: Any?): Boolean {
         if (other !is BaseEntity) return false

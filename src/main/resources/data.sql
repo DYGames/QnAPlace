@@ -1,5 +1,5 @@
-INSERT INTO MEMBER values(0, 'dygames@gmail.com', 'dygames');
-INSERT INTO MEMBER values(1, 'dygames1@gmail.com', 'dygames1');
+INSERT INTO MEMBER values(0, 'dygames@gmail.com', 'dygames', 'dy1234');
+INSERT INTO MEMBER values(1, 'dygames1@gmail.com', 'dygames1', 'dy1234');
 
 INSERT INTO CATEGORY values(0, 'Programming');
 INSERT INTO CATEGORY values(1, 'Fashion');
