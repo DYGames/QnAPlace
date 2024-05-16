@@ -5,7 +5,7 @@ import com.qnaplace.qnaplace.qnaplace.domain.article.question.header.QuestionHea
 import com.qnaplace.qnaplace.qnaplace.service.dto.header.QuestionHeaderRequest
 
 data class QuestionHeadersRequest(
-    val values: List<QuestionHeaderRequest>
+    val values: List<QuestionHeaderRequest> = emptyList()
 ) {
     companion object {
         fun toDomain(questionHeadersRequest: QuestionHeadersRequest) = QuestionHeaders(

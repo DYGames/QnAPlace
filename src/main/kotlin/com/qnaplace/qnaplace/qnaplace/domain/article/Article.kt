@@ -3,6 +3,7 @@ package com.qnaplace.qnaplace.qnaplace.domain.article
 import com.qnaplace.qnaplace.qnaplace.domain.BaseEntity
 import com.qnaplace.qnaplace.qnaplace.domain.article.question.header.QuestionHeaders
 import com.qnaplace.qnaplace.qnaplace.domain.member.Member
+import jakarta.persistence.CascadeType
 import jakarta.persistence.Entity
 import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
@@ -24,7 +25,7 @@ class Article(
     @ManyToOne
     val category: Category,
 
-    @OneToOne
+    @OneToOne(cascade = [CascadeType.PERSIST])
     @JoinColumn(name = "QUESTION_HEADERS_ID")
     val questionHeaders: QuestionHeaders,
 ) : BaseEntity()
