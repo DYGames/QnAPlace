@@ -21,9 +21,10 @@ dependencies {
 
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
-	implementation("com.h2database:h2")
 
-	runtimeOnly("com.mysql:mysql-connector-j")
+	implementation("com.h2database:h2")
+	implementation("com.mysql:mysql-connector-j")
+
 	implementation(kotlin("reflect"))
 }
 
