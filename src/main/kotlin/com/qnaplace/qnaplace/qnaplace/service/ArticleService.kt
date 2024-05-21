@@ -25,6 +25,19 @@ class ArticleService(
     private val categoryRepository: CategoryRepository,
 ) {
     @Transactional
+    fun findByDateDescending(count: Int): ArticlesResponse {
+        val articles = articleRepository
+            .findAllByOrderByDateDesc()
+            .take(count)
+            .toList()
+        val articleAnswers = articles.map {
+            Answers(answerRepository.findByArticleId(it.id))
+        }
+
+        return ArticlesResponse.of(articles, articleAnswers)
+    }
+
+    @Transactional
     fun findById(articleId: Long): ArticleResponse {
         val article = articleRepository.findById(articleId).get()
         val answers = Answers(answerRepository.findByArticleId(articleId))

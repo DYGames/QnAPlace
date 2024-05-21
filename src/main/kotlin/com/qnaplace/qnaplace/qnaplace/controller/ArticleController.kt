@@ -21,6 +21,15 @@ import org.springframework.web.bind.annotation.RestController
 class ArticleController(
     private val articleService: ArticleService
 ) {
+    @GetMapping
+    fun findByDateDescending(
+        @RequestParam("count") count: Int
+    ): ResponseEntity<ArticlesResponse> {
+        val articles = articleService.findByDateDescending(count)
+
+        return ResponseEntity.ok().body(articles)
+    }
+
     @GetMapping("/{articleId}")
     fun findById(
         @PathVariable articleId: Long
