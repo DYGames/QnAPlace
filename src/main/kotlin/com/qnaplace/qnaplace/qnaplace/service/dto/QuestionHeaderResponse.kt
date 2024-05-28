@@ -7,7 +7,10 @@ import com.qnaplace.qnaplace.qnaplace.domain.article.question.header.QuestionHea
 import com.qnaplace.qnaplace.qnaplace.domain.article.question.header.ShortQuestionHeader
 
 data class QuestionHeaderResponse(
-    val title: String, val description: String, val content: String
+    val title: String,
+    val description: String,
+    val content: String,
+    val type: String
 ) {
     companion object {
         fun of(questionHeader: QuestionHeader) = QuestionHeaderResponse(questionHeader.title,
@@ -16,6 +19,7 @@ data class QuestionHeaderResponse(
                 is QuestionType.Long -> (questionHeader as LongQuestionHeader).hint
                 is QuestionType.Short -> (questionHeader as ShortQuestionHeader).hint
                 is QuestionType.MultipleChoice -> (questionHeader as MultipleChoiceQuestionHeader).choices.joinToString { it.choice }
-            })
+            },
+            questionHeader::class.java.simpleName)
     }
 }
