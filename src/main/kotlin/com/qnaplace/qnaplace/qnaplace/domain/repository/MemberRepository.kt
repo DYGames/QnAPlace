@@ -5,4 +5,5 @@ import java.util.Optional
 
 interface MemberRepository : BaseRepository<Member, Long> {
     fun findByNameAndPassword(name: String, password: String): Optional<Member>
+    fun findAllByName(name: String): List<Member>
 }

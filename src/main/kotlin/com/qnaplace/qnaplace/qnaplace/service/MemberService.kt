@@ -52,4 +52,11 @@ class MemberService(
 
         return MemberResponse.of(mergedMember)
     }
+
+    @Transactional
+    fun isDuplicatedName(memberName: String): Boolean {
+        val members = memberRepository.findAllByName(memberName)
+
+        return members.isNotEmpty()
+    }
 }
