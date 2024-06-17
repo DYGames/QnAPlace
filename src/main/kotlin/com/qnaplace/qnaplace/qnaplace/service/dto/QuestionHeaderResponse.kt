@@ -7,13 +7,16 @@ import com.qnaplace.qnaplace.qnaplace.domain.article.question.header.QuestionHea
 import com.qnaplace.qnaplace.qnaplace.domain.article.question.header.ShortQuestionHeader
 
 data class QuestionHeaderResponse(
+    val id: Long,
     val title: String,
     val description: String,
     val content: String,
     val type: String
 ) {
     companion object {
-        fun of(questionHeader: QuestionHeader) = QuestionHeaderResponse(questionHeader.title,
+        fun of(questionHeader: QuestionHeader) = QuestionHeaderResponse(
+            questionHeader.id,
+            questionHeader.title,
             questionHeader.description,
             when (questionHeader as QuestionType) {
                 is QuestionType.Long -> (questionHeader as LongQuestionHeader).hint
